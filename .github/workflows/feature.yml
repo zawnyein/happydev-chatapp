@@ -171,7 +171,7 @@ jobs:
       # Retrieve the access URL from Terraform outputs
       - name: Set up Terraform outputs
         id: tf-outputs  # Define an id for this step to be used in the subsequent steps.
-        working-directory: ./environments/${{ env.environment }}  # Set the working directory for this step
+        working-directory: ./environments/feature  # Set the working directory for this step
         # Apply the Terraform configuration with the '-refresh-only' option to only refresh the state without creating/updating any resources.
         # Iinput variables are passed using the '-var' option. These are used to customize the Terraform configuration.
         # Fetch the 'all_access_urls' output from Terraform and process it with 'jq' to retrieve the access URL.
