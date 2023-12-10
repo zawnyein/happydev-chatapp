@@ -4,7 +4,8 @@ run-name: ${{ github.actor }} is running CICD for Group 2 Chat Application - Dev
 # The workflow is triggered on pull request event to the 'uat' branch
 on:
   push:
-    branches: [ prod ]
+    branches:
+      - 'feature**'
   
 # Define permissions for this workflow, which can be added at either the job or workflow level.      
 permissions:
@@ -60,7 +61,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ secrets.DEV_ROLE_TO_ASSUME }}
-          aws-region: us-east-2
+          aws-region: us-east-1
       
       # Log in to Amazon ECR (Elastic Container Registry)
       - name: Login to Amazon ECR 
@@ -91,7 +92,7 @@ jobs:
       # Use Terraform to create AWS ECS resources like cluster, task definition, and service
       - name: Create AWS ECS cluster, task definition and service using Terraform
         id: terraform-ecs # Define an id which allows other steps to reference outputs from this step.
-        working-directory: ./environments/${{ env.environment }}  # Set the working directory for this step
+        working-directory: ./environments/feature  # Set the working directory for this step
         # 'terraform apply -auto-approve' command is used to create or update the resources with auto-approval.
         # Variables are passed using the '-var' option to customize the Terraform configuration.
         # The '-target' option is used to restrict the scope of resource application.
@@ -170,7 +171,7 @@ jobs:
       # Retrieve the access URL from Terraform outputs
       - name: Set up Terraform outputs
         id: tf-outputs  # Define an id for this step to be used in the subsequent steps.
-        working-directory: ./environments/${{ env.environment }}  # Set the working directory for this step
+        working-directory: ./environments/feature  # Set the working directory for this step
         # Apply the Terraform configuration with the '-refresh-only' option to only refresh the state without creating/updating any resources.
         # Iinput variables are passed using the '-var' option. These are used to customize the Terraform configuration.
         # Fetch the 'all_access_urls' output from Terraform and process it with 'jq' to retrieve the access URL.
