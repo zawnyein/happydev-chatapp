@@ -55,7 +55,7 @@ variable "image_tag" {
 variable "ecs_name" {
   description = "ECS Name"
   type = string
-  default = "group2-chat-app-dev"
+  default = "group2-chat-app-uat"
 }
 
 #Specifies the CPU units allocated to ECS task
