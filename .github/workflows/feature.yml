@@ -92,7 +92,7 @@ jobs:
       # Use Terraform to create AWS ECS resources like cluster, task definition, and service
       - name: Create AWS ECS cluster, task definition and service using Terraform
         id: terraform-ecs # Define an id which allows other steps to reference outputs from this step.
-        working-directory: ./environments/${{ env.environment }}  # Set the working directory for this step
+        working-directory: ./environments/feature  # Set the working directory for this step
         # 'terraform apply -auto-approve' command is used to create or update the resources with auto-approval.
         # Variables are passed using the '-var' option to customize the Terraform configuration.
         # The '-target' option is used to restrict the scope of resource application.
