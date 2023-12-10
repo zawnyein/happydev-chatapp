@@ -29,7 +29,7 @@ variable "image_port" {
 #Set the default VPC ID
 variable "vpc_id" {
   type = string
-  default = "vpc-0aea9a87692735b16"
+  default = "vpc-02c3cea2893bac90f"
 }
 
 #Defines a list of subnet IDs within the VPC
@@ -55,7 +55,7 @@ variable "image_tag" {
 variable "ecs_name" {
   description = "ECS Name"
   type = string
-  default = "group2-chat-app-dev"
+  default = "group2-chat-app-uat"
 }
 
 #Specifies the CPU units allocated to ECS task
