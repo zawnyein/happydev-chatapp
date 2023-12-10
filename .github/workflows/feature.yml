@@ -1,4 +1,4 @@
-name: CICD for Group 2 Chat Application - Development
+name: CI for Group 2 Chat Application - Feature
 run-name: ${{ github.actor }} is running CICD for Group 2 Chat Application - Development
 
 # The workflow is triggered on pull request event to the 'uat' branch
@@ -38,3 +38,4 @@ jobs:
       # Execute unit tests using npm test
       - name: Run unit tests
         run: npm test
+
